@@ -11,10 +11,16 @@ router.post("/", async (req, res, next) => {
     const senderId = req.user.id;
     const { recipientId, text, conversationId, sender } = req.body;
 
-    // if we already know conversation id, we can save time and just add it to message and return
+    // if conversation id, we validate users are correct and create message or throw 403 error
     if (conversationId) {
-      const message = await Message.create({ senderId, text, conversationId });
-      return res.json({ message, sender });
+      const { user1Id, user2Id } = await Conversation.findByPk(conversationId);
+
+      if (user1Id === senderId && user2Id === recipientId || user1Id === recipientId && user2Id === senderId) {
+        const message = await Message.create({ senderId, text, conversationId });
+
+        return res.json({ message, sender });
+      }
+      return res.status(403).json({ error: "Unauthorized" });
     }
     // if we don't have conversation id, find a conversation to make sure it doesn't already exist
     let conversation = await Conversation.findConversation(

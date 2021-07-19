@@ -46,7 +46,7 @@ export const register = (credentials) => async (dispatch) => {
 
 export const login = (credentials) => async (dispatch) => {
   try {
-    const { data } = await axios.post("http://localhost:3001/auth/login", credentials);
+    const { data } = await axios.post("/auth/login", credentials);
     await localStorage.setItem("messenger-token", data.token);
     dispatch(gotUser(data));
     socket.emit("go-online", data.id);

@@ -48,7 +48,7 @@ router.get("/", async (req, res, next) => {
       ],
     });
 
-    const reversed_convo_list = [];
+    const reversedConvoList = [];
 
     for (let i = (conversations.length - 1); i >= 0; i--) {
       const convo = conversations[i];
@@ -72,10 +72,10 @@ router.get("/", async (req, res, next) => {
 
       // set properties for notification count and latest message preview
       convoJSON.latestMessageText = convoJSON.messages[convoJSON.messages.length - 1].text;
-      reversed_convo_list.push(convoJSON);
+      reversedConvoList.push(convoJSON);
     }
 
-    res.json(reversed_convo_list);
+    res.json(reversedConvoList);
   } catch (error) {
     next(error);
   }

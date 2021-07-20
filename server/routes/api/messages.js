@@ -20,7 +20,7 @@ router.post("/", async (req, res, next) => {
 
         return res.json({ message, sender });
       }
-      return res.status(403).json({ error: "Unauthorized" });
+      return res.status(403).json({ error: "Forbidden" });
     }
     // if we don't have conversation id, find a conversation to make sure it doesn't already exist
     let conversation = await Conversation.findConversation(

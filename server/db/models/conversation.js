@@ -22,4 +22,19 @@ Conversation.findConversation = async function (user1Id, user2Id) {
   return conversation;
 };
 
+// /**
+//  * Takes in a sender ID, conversation ID. returns # of messages a user has sent that have **NOT** been read yet
+//  * @param {*} senderId 
+//  * @param {*} conversationId 
+//  */
+Conversation.countUnreadMessages = async function (senderId, conversationId) {
+  return await Message.findAndCountAll({
+    where: {
+      conversationId,
+      senderId: senderId,
+      read: false
+    }
+  });
+};
+
 module.exports = Conversation;

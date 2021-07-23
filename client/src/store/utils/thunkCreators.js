@@ -88,6 +88,7 @@ const sendMessage = (data, body) => {
     message: data.message,
     recipientId: body.recipientId,
     sender: data.sender,
+    read: false,
   });
 };
 
@@ -117,3 +118,13 @@ export const searchUsers = (searchTerm) => async (dispatch) => {
     console.error(error);
   }
 };
+
+// sends the sender ID, since that's how we identify the other user's messages
+// returns the new conversation object
+export const markMessagesAsRead = async (convoId, senderId) => {
+  try {
+    await axios.put('/api/messages/read', { convoId: convoId, senderId: senderId });
+  } catch (error) {
+    console.error(error);
+  }
+} 

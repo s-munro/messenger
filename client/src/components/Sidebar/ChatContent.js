@@ -1,4 +1,4 @@
-import React, { } from "react";
+import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   unread: {
     fontWeight: "bold",
+    color: 'inherit',
   },
   notification: {
     height: 20,
@@ -41,15 +42,7 @@ const ChatContent = (props) => {
   const classes = useStyles();
 
   const { conversation } = props;
-  const { latestMessageText, otherUser } = conversation;
-  console.log({ conversation });
-
-  const calculateUnread = (conversation, otherUserId) => {
-    const unreadMessages = conversation.messages.filter(message => {
-      return message.senderId === otherUserId && message.read === false;
-    });
-    return unreadMessages.length;
-  };
+  const { latestMessageText, otherUser, unreadMessageCount } = conversation;
 
   return (
     <Box className={classes.root}>
@@ -57,12 +50,14 @@ const ChatContent = (props) => {
         <Typography className={classes.username}>
           {otherUser.username}
         </Typography>
-        <Typography className={`${classes.previewText}`}>
+        <Typography className={`${classes.previewText} ${unreadMessageCount > 0 && classes.unread}`}>
           {latestMessageText}
         </Typography>
-        <div className={classes.notification}>
-          {calculateUnread(conversation, otherUser.id)}
-        </div>
+        {unreadMessageCount > 0 && (
+          <div className={classes.notification}>
+            {unreadMessageCount}
+          </div>
+        )}
       </Box>
     </Box>
   );

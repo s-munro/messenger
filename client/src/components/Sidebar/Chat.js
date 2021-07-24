@@ -25,7 +25,10 @@ class Chat extends Component {
     try {
       await Promise.all([
         this.props.setActiveChat(conversation.otherUser.username),
-        this.props.markMessagesAsRead(this.props.conversation.id, conversation.otherUser.id)
+        this.props.markMessagesAsRead(
+          this.props.conversation.id,
+          conversation.otherUser.id
+        )
       ]);
     } catch (err) {
       console.log(err);

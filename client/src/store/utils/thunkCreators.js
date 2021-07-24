@@ -124,7 +124,7 @@ export const searchUsers = (searchTerm) => async (dispatch) => {
 // returns the new conversation object
 export const markMessagesAsRead = (convoId, senderId) => async (dispatch) => {
   try {
-    const { data } = await axios.put('/api/messages/read', { convoId: convoId, senderId: senderId });
+    const { data } = await axios.put('/api/conversations/read', { convoId: convoId, senderId: senderId });
     dispatch(replaceConversation(data.conversation))
   } catch (error) {
     console.error(error);

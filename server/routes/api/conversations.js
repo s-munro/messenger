@@ -68,14 +68,14 @@ router.get("/", async (req, res, next) => {
         convoJSON.otherUser.online = false;
       }
 
-      const numberOfUnread = await Message.count({
+      const unreadMessageCount = await Message.count({
         where: {
           conversationId: convoJSON.id,
           senderId: convoJSON.otherUser.id,
           read: false
         }
       });
-      convoJSON.unreadMessageCount = numberOfUnread;
+      convoJSON.unreadMessageCount = unreadMessageCount;
 
       // set properties for notification count and latest message preview
       convoJSON.latestMessageText = convoJSON.messages[convoJSON.messages.length - 1].text;
@@ -87,6 +87,42 @@ router.get("/", async (req, res, next) => {
     });
 
     res.json(conversations);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put('/read', async (req, res, next) => {
+  console.log('HERE!');
+  const { user } = req;
+  const { convoId, senderId } = req.body;
+
+  try {
+    if (!user) {
+      return res.sendStatus(401);
+    } else if (!convoId || !senderId) {
+      return res.sendStatus(400);
+    }
+    const { user1Id, user2Id } = await Conversation.findByPk(convoId);
+    if (user1Id !== user.id && user2Id !== user.id) {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+
+    await Message.markMessagesAsRead(senderId, convoId);
+
+    const updatedConversation = await Conversation.getDetailsById(convoId, user.id);
+    const convoJSON = updatedConversation.toJSON();
+
+    if (convoJSON.user1) {
+      convoJSON.otherUser = convoJSON.user1;
+      delete convoJSON.user1;
+    } else if (convoJSON.user2) {
+      convoJSON.otherUser = convoJSON.user2;
+      delete convoJSON.user2;
+    };
+    convoJSON.latestMessageText = convoJSON.messages[convoJSON.messages.length - 1].text;
+
+    res.status(200).json({ conversation: convoJSON });
   } catch (error) {
     next(error);
   }

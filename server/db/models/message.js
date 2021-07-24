@@ -21,6 +21,7 @@ Message.markMessagesAsRead = async function (senderId, conversationId) {
     where: {
       conversationId: conversationId,
       senderId: senderId,
+      read: false,
     }
   });
   return res;

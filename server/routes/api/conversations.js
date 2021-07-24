@@ -83,8 +83,7 @@ router.get("/", async (req, res, next) => {
     }
 
     conversations.sort((conv1, conv2) => {
-      return new Date(conv2.messages[conv2.messages.length - 1].createdAt)
-        - new Date(conv1.messages[conv1.messages.length - 1].createdAt);
+      return conv2.messages[conv2.messages.length - 1].createdAt - conv1.messages[conv1.messages.length - 1].createdAt;
     });
 
     res.json(conversations);

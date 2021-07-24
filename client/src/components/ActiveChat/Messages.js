@@ -6,10 +6,12 @@ import moment from "moment";
 const Messages = (props) => {
   const { messages, otherUser, userId } = props;
 
-  const lastUnreadIndex = useMemo(() => messages.findIndex((message) => {
-    return message.senderId === userId && message.read === false;
-  }), [messages, userId]);
-
+  const lastUnreadIndex = useMemo(() => {
+    let i = messages.length;
+    while (i--) {
+      if (messages[i].senderId === userId && messages[i].read) return i;
+    }
+  }, [messages, userId]);
 
   return (
     <Box>

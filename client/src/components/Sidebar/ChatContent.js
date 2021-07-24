@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
     marginLeft: 20,
     flexGrow: 1,
   },
@@ -53,12 +54,12 @@ const ChatContent = (props) => {
         <Typography className={`${classes.previewText} ${unreadMessageCount > 0 && classes.unread}`}>
           {latestMessageText}
         </Typography>
-        {unreadMessageCount > 0 && (
-          <div className={classes.notification}>
-            {unreadMessageCount}
-          </div>
-        )}
       </Box>
+      {unreadMessageCount > 0 && (
+        <div className={classes.notification}>
+          {unreadMessageCount}
+        </div>
+      )}
     </Box>
   );
 };

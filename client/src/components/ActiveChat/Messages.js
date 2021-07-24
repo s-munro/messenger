@@ -1,22 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
 
 const Messages = (props) => {
   const { messages, otherUser, userId } = props;
+  const [readMessageBubble, setReadMessageBubble] = useState({
+    isShowing: false,
+    messageId: null,
+  });
 
-  const lastUnreadIndex = useMemo(() => {
-    let i = messages.length;
-    while (i--) {
-      if (messages[i].senderId === userId && messages[i].read) return i;
+  const checkIfLastReadMessage = (message) => {
+    const { isShowing } = readMessageBubble;
+    if (!isShowing && message.read && message.senderId === userId) {
+      setReadMessageBubble({ isShowing: true, messageId: message.id });
     }
-  }, [messages, userId]);
+  };
+
 
   return (
     <Box>
-      {messages.map((message, idx) => {
+      {messages.map((message) => {
         const time = moment(message.createdAt).format("h:mm");
+        checkIfLastReadMessage(message);
 
         return message.senderId === userId ? (
           <SenderBubble
@@ -24,7 +30,7 @@ const Messages = (props) => {
             text={message.text}
             time={time}
             otherUser={otherUser}
-            showReadBubble={lastUnreadIndex === idx} />
+            showReadBubble={readMessageBubble.messageId === message.id} />
         ) : (
           <OtherUserBubble
             key={message.id}

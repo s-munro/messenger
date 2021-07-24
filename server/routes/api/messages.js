@@ -67,7 +67,19 @@ router.put('/read', async (req, res, next) => {
 
     await Message.markMessagesAsRead(senderId, convoId);
 
-    res.sendStatus(200);
+    const updatedConversation = await Conversation.getDetailsById(convoId, user.id);
+    const convoJSON = updatedConversation.toJSON();
+
+    if (convoJSON.user1) {
+      convoJSON.otherUser = convoJSON.user1;
+      delete convoJSON.user1;
+    } else if (convoJSON.user2) {
+      convoJSON.otherUser = convoJSON.user2;
+      delete convoJSON.user2;
+    };
+    convoJSON.latestMessageText = convoJSON.messages[convoJSON.messages.length - 1].text;
+
+    res.status(200).json({ conversation: convoJSON });
   } catch (error) {
     next(error);
   }

@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     height: theme.typography.button.height,
     width: theme.typography.button.width,
     boxShadow: theme.typography.button.boxShadow,
+    fontWeight: 700, [theme.breakpoints.down("sm")]: {
+      height: "60px",
+      width: "180px",
+    }
   },
   formHeader: {
     color: "black",
@@ -41,15 +45,18 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     textAlign: "left",
     width: "100%",
-    maxWidth: "550px",
+    maxWidth: "600px",
   },
   submitButton: {
     marginTop: theme.spacing(8),
     height: theme.typography.button.height,
     width: theme.typography.button.width,
     boxShadow: theme.typography.button.boxShadow,
-    fontSize: "16px",
-    fontWeight: 700
+    fontSize: theme.typography.button.fontSize,
+    fontWeight: 700, [theme.breakpoints.down("sm")]: {
+      height: "60px",
+      width: "180px",
+    }
   },
   form: {
     display: "flex",
@@ -57,17 +64,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    maxWidth: "550px",
+    maxWidth: "600px",
   },
   formWrapper: {
     justifyContent: "center",
     display: "flex",
     width: "100%",
-    maxWidth: "550px",
+    maxWidth: "600px",
     [theme.breakpoints.down("sm")]: {
       maxWidth: "80%",
       paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
+      paddingBottom: theme.spacing(0),
     },
   }
 }));
@@ -98,7 +105,7 @@ export const AuthForm = ({ headerText, onSubmit, submitText, children }) => {
       justify="center"
       className={classes.formWrapper}
     >
-      <Typography className={classes.formHeader} variant="h4">
+      <Typography className={classes.formHeader} variant="h3">
         {headerText}
       </Typography>
       <form onSubmit={onSubmit} className={classes.form}>

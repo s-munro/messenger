@@ -8,8 +8,9 @@ export const theme = createTheme({
       textTransform: "none",
       letterSpacing: 0,
       fontWeight: "bold",
-      height: "60px",
-      width: "180px",
+      fontSize: "18px",
+      height: "90px",
+      width: "270px",
       boxShadow: "0 0 8px 0 rgba(0 0 0 / 20%)"
     }
   },

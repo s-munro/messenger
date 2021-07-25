@@ -24,16 +24,18 @@ const useStyles = makeStyles((theme) => ({
   sloganText: {
     color: "#ffffff",
     marginTop: "35px",
-    fontSize: 32,
+    fontSize: 36,
     width: "75%",
     textAlign: "center",
-    marginBottom: 150, [theme.breakpoints.down("sm")]: {
-      marginBottom: 50,
-    }
+    marginBottom: 170, [theme.breakpoints.down("sm")]: {
+      marginBottom: 70,
+    },
+    paddingTop: 20,
+    fontWeight: 600,
   },
   bubble: {
-    height: 100,
-    width: 100,
+    height: 120,
+    width: 120,
   }
 }));
 

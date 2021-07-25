@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: theme.spacing(0),
   },
   resize: {
-    fontSize: "20px",
+    fontSize: "25px",
     letterSpacing: 1,
   }
 }));

@@ -25,9 +25,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     marginTop: "35px",
     fontSize: 32,
-    marginBottom: 50,
+    // marginBottom: 50,
     width: "75%",
     textAlign: "center",
+    marginBottom: 150, [theme.breakpoints.down("sm")]: {
+      marginBottom: 50,
+    }
   },
   bubble: {
     height: 100,

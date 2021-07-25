@@ -39,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontWeight: theme.typography.button.fontWeight,
     marginBottom: theme.spacing(5),
-    textAlign: "center",
+    textAlign: "left",
+    width: "100%",
+    maxWidth: "400px",
   },
   submitButton: {
     marginTop: theme.spacing(8),
@@ -58,9 +60,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "400px",
   },
   formWrapper: {
-    width: "60%",
+    // width: "60%",
     justifyContent: "center",
     display: "flex",
+    width: "100%",
+    maxWidth: "400px",
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: "80%",
+    },
   }
 }));
 
@@ -108,7 +115,7 @@ export const AuthForm = ({ headerText, onSubmit, submitText, children }) => {
   );
 };
 
-AuthForm.FormItem = ({ ariaLabel, label, name, type, className, labelClass, ...rest }) => {
+AuthForm.FormItem = ({ ariaLabel, label, name, type, className, labelClass, children, ...rest }) => {
   return (
     <FormControl fullWidth>
       <TextField
@@ -119,6 +126,7 @@ AuthForm.FormItem = ({ ariaLabel, label, name, type, className, labelClass, ...r
         className={className}
         {...rest}
       />
+      {children}
     </FormControl>
   );
 };

@@ -18,12 +18,6 @@ const useStyles = makeStyles(() => ({
  },
 }));
 
-type HomeProps = {
- user: User;
- fetchConversations: () => void;
- logout: () => void;
-};
-
 type User = {
  id: number;
  createdAt: Date;
@@ -38,7 +32,7 @@ type StateProps = {
  user: User;
 };
 
-const Home = () => {
+export const Home = () => {
  const [isLoggedIn, setIsLoggedIn] = useState(false);
  const classes = useStyles();
  const dispatch = useDispatch();
@@ -76,5 +70,3 @@ const Home = () => {
   </>
  );
 };
-
-export default Home;

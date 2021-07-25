@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "./store/utils/thunkCreators";
 import Login from "./Login";
-import { Signup } from './components/AuthPage/Signup';
+import Signup from './Signup';
 import { Home, SnackbarError } from "./components";
 
 const Routes = (props) => {

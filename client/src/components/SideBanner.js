@@ -1,38 +1,51 @@
-import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Box, Typography } from "@material-ui/core";
+
 import bgImg from '../assets/bg-img.png';
+import { BubbleIcon } from './Icons';
 
-
-
-const useStyles = makeStyles(() => ({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  imageContainer: {
+    backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85)), url(${bgImg})`,
+    width: "100%",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     position: "relative",
-    width: "100%",
-    height: "100%",
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      top: "0",
-      left: "0",
-      background: "linear-gradient(#3a8dff, #86b9ff)",
-      opacity: "0.85",
-    }
   },
-  image: {
+  contentWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
     height: "100%",
-    objectFit: "cover",
+  },
+  sloganText: {
+    color: "#ffffff",
+    marginTop: "35px",
+    fontSize: 32,
+    marginBottom: 50,
+    width: "75%",
+    textAlign: "center",
+  },
+  bubble: {
+    height: 100,
+    width: 100,
   }
 }));
 
 export const SideBanner = () => {
   const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <img className={classes.image} src={bgImg} alt="individuals talking" />
-    </div>
+    <Box className={classes.imageContainer}>
+      <Grid className={classes.contentWrapper}>
+        <BubbleIcon className={classes.bubble} />
+        <Typography className={classes.sloganText}>
+          Converse with anyone<br />
+          with any language
+        </Typography>
+      </Grid>
+    </Box>
   );
 };

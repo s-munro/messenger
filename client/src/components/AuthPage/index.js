@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     textAlign: "left",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "550px",
   },
   submitButton: {
     marginTop: theme.spacing(8),
@@ -57,16 +57,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "550px",
   },
   formWrapper: {
-    // width: "60%",
     justifyContent: "center",
     display: "flex",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "550px",
     [theme.breakpoints.down('sm')]: {
       maxWidth: "80%",
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
     },
   }
 }));

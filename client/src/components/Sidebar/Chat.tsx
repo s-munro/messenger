@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { setActiveChat } from '../../store/activeConversation';
 import { useDispatch } from 'react-redux';
 
+import { Conversation } from '../../conversation-types';
+
 const useStyles = makeStyles(() => ({
  root: {
   borderRadius: 8,
@@ -20,31 +22,6 @@ const useStyles = makeStyles(() => ({
 
 type ChatProps = {
  conversation: Conversation;
-};
-
-type Message = {
- conversationId: number;
- createdAt: Date;
- id: number;
- senderId: number;
- text: string;
- updatedAt: Date;
-};
-
-type OtherUser = {
- id: number;
- online: boolean;
- photoUrl: string;
- username: string;
-};
-
-type Conversation = {
- id: number;
- latestMessageText: string;
- messages: Array<Message>;
- otherUser: OtherUser;
- user1?: null;
- user2?: null;
 };
 
 export const Chat = ({ conversation }: ChatProps) => {

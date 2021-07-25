@@ -16,7 +16,11 @@ export const theme = createTheme({
   overrides: {
     MuiInput: {
       input: {
-        fontWeight: "bold"
+        fontWeight: "bold",
+        "&:-webkit-autofill": {
+          transitionDelay: "9999s",
+          transitionProperty: "background-color, color",
+        },
       }
     }
   },

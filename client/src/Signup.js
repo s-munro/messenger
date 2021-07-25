@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Typography } from "@material-ui/core";
-import { register } from "./store/utils/thunkCreators";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { register } from "./store/utils/thunkCreators";
 import { theme } from "./themes/theme";
 import { SideBanner } from "./components/SideBanner";
 import { AuthForm, HeaderContent } from "./components/AuthPage";

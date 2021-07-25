@@ -47,12 +47,6 @@ const useStyles = makeStyles(() => ({
   label: {
     fontWeight: 800,
   },
-  endAdornmentText: {
-    fontWeight: 700,
-    fontSize: "12px",
-    color: theme.palette.primary.main,
-    paddingBottom: theme.spacing(0),
-  },
   resize: {
     fontSize: "25px",
     letterSpacing: 1,

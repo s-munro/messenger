@@ -27,10 +27,12 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: "0px", [theme.breakpoints.down("sm")]: {
-      paddingTop: "150px",
-      paddingBottom: "150px",
+    paddingTop: "0px", [theme.breakpoints.down("md")]: {
+      height: "90vh",
       position: "relative",
+    }, [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(18),
+      paddingBottom: theme.spacing(18),
     },
   },
   headerContent: {
@@ -81,10 +83,10 @@ const Signup = (props) => {
 
   return (
     <Grid className={classes.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={classes.section}>
+      <Grid container md={12} lg={5} justifyContent="center" className={classes.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={classes.mainContent}>
+      <Grid container md={12} lg={7} className={classes.mainContent}>
         <HeaderContent
           ctaText="Already have an account?"
           buttonText="Login"

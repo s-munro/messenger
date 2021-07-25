@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   root: {
     '& .MuiInputLabel-formControl': {
       color: theme.palette.secondary.main,
-      fontWeight: 600,
+      fontWeight: theme.typography.semibold,
     },
     flexGrow: 1,
     height: '100vh',
@@ -26,10 +26,12 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: "0px", [theme.breakpoints.down('sm')]: {
-      paddingTop: "150px",
-      paddingBottom: "150px",
+    paddingTop: "0px", [theme.breakpoints.down("md")]: {
+      height: "90vh",
       position: "relative",
+    }, [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(18),
+      paddingBottom: theme.spacing(18),
     },
   },
   headerContent: {
@@ -44,11 +46,11 @@ const useStyles = makeStyles(() => ({
     marginBottom: theme.spacing(4),
   },
   label: {
-    fontWeight: 800,
+    fontWeight: theme.typography.extraBold,
   },
   endAdornmentText: {
-    fontWeight: 700,
-    fontSize: "12px",
+    fontWeight: theme.typography.bold,
+    fontSize: theme.typography.smallFontSize,
     color: theme.palette.primary.main,
     paddingBottom: theme.spacing(0),
   },
@@ -77,10 +79,10 @@ const Login = (props) => {
 
   return (
     <Grid className={classes.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={classes.section}>
+      <Grid container md={12} lg={5} justifyContent="center" className={classes.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={classes.mainContent}>
+      <Grid container md={12} lg={7} className={classes.mainContent}>
         <HeaderContent
           ctaText="Don't have an account?"
           buttonText="Create account"

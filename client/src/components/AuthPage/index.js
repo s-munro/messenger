@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     flexDirection: "row",
     alignItems: "center",
-    fontSize: "12px",
+    fontSize: theme.typography.smallFontSize,
     [theme.breakpoints.down("sm")]: {
       right: theme.spacing(2)
     },
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     height: theme.typography.button.height,
     width: theme.typography.button.width,
     boxShadow: theme.typography.button.boxShadow,
-    fontWeight: 700, [theme.breakpoints.down("sm")]: {
-      height: "60px",
-      width: "180px",
+    fontWeight: theme.typography.bold, [theme.breakpoints.down("sm")]: {
+      height: "55px",
+      width: "165px",
     }
   },
   formHeader: {
@@ -45,7 +45,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     textAlign: "left",
     width: "100%",
-    maxWidth: "600px",
+    maxWidth: "600px", [theme.breakpoints.down("sm")]: {
+      fontSize: 32,
+    }
   },
   submitButton: {
     marginTop: theme.spacing(8),
@@ -53,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
     width: theme.typography.button.width,
     boxShadow: theme.typography.button.boxShadow,
     fontSize: theme.typography.button.fontSize,
-    fontWeight: 700, [theme.breakpoints.down("sm")]: {
-      height: "60px",
-      width: "180px",
+    fontWeight: theme.typography.bold, [theme.breakpoints.down("sm")]: {
+      height: "55px",
+      width: "165px",
     }
   },
   form: {
@@ -75,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "80%",
       paddingTop: theme.spacing(8),
       paddingBottom: theme.spacing(0),
+
     },
   }
 }));

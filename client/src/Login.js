@@ -12,8 +12,8 @@ import { useAuthStyles } from './components/AuthPage/authStyles';
 
 const useStyles = makeStyles(() => ({
   endAdornmentText: {
-    fontWeight: 700,
-    fontSize: "12px",
+    fontWeight: theme.typography.bold,
+    fontSize: theme.typography.smallFontSize,
     color: theme.palette.primary.main,
     paddingBottom: theme.spacing(0),
   },
@@ -41,10 +41,10 @@ const Login = (props) => {
 
   return (
     <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={authClasses.section}>
+      <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={authClasses.mainContent}>
+      <Grid container md={12} lg={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Don't have an account?"
           buttonText="Create account"

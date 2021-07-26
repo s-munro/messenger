@@ -4,29 +4,31 @@ import { theme } from "../../themes/theme";
 
 export const useAuthStyles = makeStyles(() => ({
   root: {
-    "& .MuiInputLabel-formControl": {
+    '& .MuiInputLabel-formControl': {
       color: theme.palette.secondary.main,
-      fontWeight: 600,
+      fontWeight: theme.typography.semibold,
     },
     flexGrow: 1,
-    height: "100vh",
+    height: '100vh',
   },
   section: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
   },
   mainContent: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "0px", [theme.breakpoints.down("sm")]: {
-      paddingTop: "150px",
-      paddingBottom: "150px",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: "0px", [theme.breakpoints.down("md")]: {
+      height: "90vh",
       position: "relative",
+    }, [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(18),
+      paddingBottom: theme.spacing(18),
     },
   },
   headerContent: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     color: theme.palette.secondary.main,
   },
@@ -37,7 +39,7 @@ export const useAuthStyles = makeStyles(() => ({
     marginBottom: theme.spacing(4),
   },
   label: {
-    fontWeight: 800,
+    fontWeight: theme.typography.extraBold,
   },
   resize: {
     fontSize: "25px",

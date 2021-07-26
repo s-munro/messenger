@@ -36,10 +36,10 @@ const Signup = (props) => {
 
   return (
     <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={authClasses.section}>
+      <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={authClasses.mainContent}>
+      <Grid container md={12} lg={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Already have an account?"
           buttonText="Login"

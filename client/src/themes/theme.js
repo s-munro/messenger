@@ -4,6 +4,11 @@ export const theme = createTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif",
     fontSize: 14,
+    smallFontSize: 12,
+
+    semiBold: 600,
+    bold: 700,
+    extraBold: 800,
     button: {
       textTransform: "none",
       letterSpacing: 0,

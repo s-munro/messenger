@@ -16,7 +16,7 @@ router.post("/", async (req, res, next) => {
       const { user1Id, user2Id } = await Conversation.findByPk(conversationId);
 
       if (user1Id === senderId && user2Id === recipientId || user1Id === recipientId && user2Id === senderId) {
-        const message = await Message.create({ senderId, text, conversationId });
+        const message = await Message.create({ senderId, text, conversationId, read: false });
 
         return res.json({ message, sender });
       }
@@ -42,6 +42,7 @@ router.post("/", async (req, res, next) => {
       senderId,
       text,
       conversationId: conversation.id,
+      read: false,
     });
     res.json({ message, sender });
   } catch (error) {

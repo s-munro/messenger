@@ -3,9 +3,8 @@ import { FormControl, FilledInput } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
-import { theme } from "../../themes/theme";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: "flex-end",
     marginTop: theme.spacing(2),
@@ -36,6 +35,7 @@ const Input = ({ otherUser, conversationId }) => {
       recipientId: otherUser.id,
       conversationId: conversationId,
       sender: conversationId ? null : user,
+      read: false,
     };
     await dispatch(postMessage(reqBody));
     setText("");

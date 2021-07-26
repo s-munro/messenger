@@ -2,7 +2,6 @@ import React from 'react';
 import { FormControl, FilledInput, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
-import { theme } from '../../themes/theme';
 
 const useStyles = makeStyles((theme) => ({
  filledInput: {

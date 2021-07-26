@@ -5,9 +5,8 @@ import { useDispatch } from 'react-redux';
 
 import { setActiveChat } from '../../store/activeConversation';
 import { Conversation } from '../../conversation-types';
-import { theme } from '../../themes/theme';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
  root: {
   borderRadius: 8,
   height: 80,

@@ -1,9 +1,9 @@
 import { Box } from '@material-ui/core';
 import { BadgeAvatar, ChatContent } from '.';
 import { makeStyles } from '@material-ui/core/styles';
-import { setActiveChat } from '../../store/activeConversation';
 import { useDispatch } from 'react-redux';
 
+import { setActiveChat } from '../../store/activeConversation';
 import { Conversation } from '../../conversation-types';
 
 const useStyles = makeStyles(() => ({

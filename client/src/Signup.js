@@ -2,62 +2,17 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { register } from "./store/utils/thunkCreators";
-import { theme } from "./themes/theme";
 import { SideBanner } from "./components/SideBanner";
 import { AuthForm, HeaderContent } from "./components/AuthPage";
-
-
-const useStyles = makeStyles(() => ({
-  root: {
-    "& .MuiInputLabel-formControl": {
-      color: theme.palette.secondary.main,
-      fontWeight: 600,
-    },
-    flexGrow: 1,
-    height: "100vh",
-  },
-  section: {
-    height: "100%",
-    width: "100%",
-  },
-  mainContent: {
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "0px", [theme.breakpoints.down("sm")]: {
-      paddingTop: "150px",
-      paddingBottom: "150px",
-      position: "relative",
-    },
-  },
-  headerContent: {
-    position: "absolute",
-    top: 0,
-    color: theme.palette.secondary.main,
-  },
-  fullWidth: {
-    width: "100%",
-    paddingTop: "15px",
-    fontWeight: "bold",
-    marginBottom: theme.spacing(4),
-  },
-  label: {
-    fontWeight: 800,
-  },
-  resize: {
-    fontSize: "25px",
-    letterSpacing: 1,
-  }
-}));
+import { useAuthStyles } from './components/AuthPage/authStyles';
 
 const Signup = (props) => {
   const { user, register } = props;
 
   const history = useHistory();
-  const classes = useStyles();
+  const authClasses = useAuthStyles();
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -80,16 +35,16 @@ const Signup = (props) => {
   }
 
   return (
-    <Grid className={classes.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={classes.section}>
+    <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
+      <Grid container sm={12} md={5} justifyContent="center" className={authClasses.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={classes.mainContent}>
+      <Grid container sm={12} md={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Already have an account?"
           buttonText="Login"
           onButtonClick={() => history.push("/login")}
-          className={classes.headerContent}
+          className={authClasses.headerContent}
         />
         <AuthForm
           headerText="Create an account."
@@ -101,24 +56,24 @@ const Signup = (props) => {
             label="Username"
             name="username"
             type="text"
-            className={classes.fullWidth}
+            className={authClasses.fullWidth}
           />
           <AuthForm.FormItem
             aria-label="E-mail address"
             label="E-mail address"
             name="username"
             type="text"
-            className={classes.fullWidth}
+            className={authClasses.fullWidth}
           />
           <AuthForm.FormItem
             label="Password"
             aria-label="password"
             type="password"
             name="password"
-            className={`${classes.fullWidth} ${classes.password}`}
+            className={`${authClasses.fullWidth} ${authClasses.password}`}
             InputProps={{
               classes: {
-                input: classes.resize,
+                input: authClasses.resize,
               }
             }}
           >

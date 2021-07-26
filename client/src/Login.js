@@ -8,60 +8,24 @@ import { login } from "./store/utils/thunkCreators";
 import { SideBanner } from "./components/SideBanner";
 import { AuthForm, HeaderContent } from "./components/AuthPage";
 import { theme } from "./themes/theme";
+import { useAuthStyles } from './components/AuthPage/authStyles';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    '& .MuiInputLabel-formControl': {
-      color: theme.palette.secondary.main,
-      fontWeight: 600,
-    },
-    flexGrow: 1,
-    height: '100vh',
-  },
-  section: {
-    height: '100%',
-    width: '100%',
-  },
-  mainContent: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: "0px", [theme.breakpoints.down('sm')]: {
-      paddingTop: "150px",
-      paddingBottom: "150px",
-      position: "relative",
-    },
-  },
-  headerContent: {
-    position: 'absolute',
-    top: 0,
-    color: theme.palette.secondary.main,
-  },
-  fullWidth: {
-    width: "100%",
-    paddingTop: "15px",
-    fontWeight: "bold",
-    marginBottom: theme.spacing(4),
-  },
-  label: {
-    fontWeight: 800,
-  },
   endAdornmentText: {
     fontWeight: 700,
     fontSize: "12px",
     color: theme.palette.primary.main,
     paddingBottom: theme.spacing(0),
   },
-  resize: {
-    fontSize: "25px",
-    letterSpacing: 1,
-  }
 }));
 
 const Login = (props) => {
   const { user, login } = props;
+
   const history = useHistory();
+  const authClasses = useAuthStyles();
   const classes = useStyles();
+
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -76,16 +40,16 @@ const Login = (props) => {
   }
 
   return (
-    <Grid className={classes.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container sm={12} md={5} justifyContent="center" className={classes.section}>
+    <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
+      <Grid container sm={12} md={5} justifyContent="center" className={authClasses.section}>
         <SideBanner />
       </Grid>
-      <Grid container sm={12} md={7} className={classes.mainContent}>
+      <Grid container sm={12} md={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Don't have an account?"
           buttonText="Create account"
           onButtonClick={() => history.push('/register')}
-          className={classes.headerContent}
+          className={authClasses.headerContent}
         />
         <AuthForm
           headerText="Welcome back!"
@@ -97,14 +61,14 @@ const Login = (props) => {
             label="E-mail address"
             name="username"
             type="text"
-            className={classes.fullWidth}
+            className={authClasses.fullWidth}
           />
           <AuthForm.FormItem
             label="Password"
             aria-label="password"
             type="password"
             name="password"
-            className={`${classes.fullWidth} ${classes.password}`}
+            className={`${authClasses.fullWidth} ${authClasses.password}`}
             InputProps={{
               endAdornment: (
                 <Typography className={classes.endAdornmentText}>
@@ -112,7 +76,7 @@ const Login = (props) => {
                 </Typography>
               ),
               classes: {
-                input: classes.resize,
+                input: authClasses.resize,
               }
             }}
           />

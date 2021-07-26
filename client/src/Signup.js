@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
 
 import { register } from "./store/utils/thunkCreators";
 import { SideBanner } from "./components/SideBanner";
@@ -36,9 +36,11 @@ const Signup = (props) => {
 
   return (
     <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
-        <SideBanner />
-      </Grid>
+      <Hidden mdDown>
+        <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
+          <SideBanner />
+        </Grid>
+      </Hidden>
       <Grid container md={12} lg={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Already have an account?"

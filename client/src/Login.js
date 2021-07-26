@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 
 import { login } from "./store/utils/thunkCreators";
 import { SideBanner } from "./components/SideBanner";
@@ -41,9 +42,11 @@ const Login = (props) => {
 
   return (
     <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
-      <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
-        <SideBanner />
-      </Grid>
+      <Hidden mdDown>
+        <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
+          <SideBanner />
+        </Grid>
+      </Hidden>
       <Grid container md={12} lg={7} className={authClasses.mainContent}>
         <HeaderContent
           ctaText="Don't have an account?"

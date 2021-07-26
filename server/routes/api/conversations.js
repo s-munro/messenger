@@ -93,7 +93,6 @@ router.get("/", async (req, res, next) => {
 });
 
 router.put('/read', async (req, res, next) => {
-  console.log('HERE!');
   const { user } = req;
   const { convoId, senderId } = req.body;
 

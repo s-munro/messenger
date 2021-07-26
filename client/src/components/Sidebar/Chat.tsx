@@ -5,13 +5,14 @@ import { useDispatch } from 'react-redux';
 
 import { setActiveChat } from '../../store/activeConversation';
 import { Conversation } from '../../conversation-types';
+import { theme } from '../../themes/theme';
 
 const useStyles = makeStyles(() => ({
  root: {
   borderRadius: 8,
   height: 80,
   boxShadow: '0 2px 10px 0 rgba(88,133,196,0.05)',
-  marginBottom: 10,
+  marginBottom: theme.spacing(2.25),
   display: 'flex',
   alignItems: 'center',
   '&:hover': {

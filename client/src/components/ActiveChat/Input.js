@@ -3,21 +3,22 @@ import { FormControl, FilledInput } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
+import { theme } from "../../themes/theme";
 
 const useStyles = makeStyles(() => ({
   root: {
     justifySelf: "flex-end",
-    marginTop: 15,
+    marginTop: theme.spacing(2),
   },
   input: {
     height: 70,
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
-    marginBottom: 20,
+    marginBottom: theme.spacing(2.5),
   },
 }));
 
-const Input = ({ otherUser, conversationId, postMessage }) => {
+const Input = ({ otherUser, conversationId }) => {
   const [text, setText] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();

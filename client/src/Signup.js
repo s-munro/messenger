@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-  FormHelperText,
-} from "@material-ui/core";
-import { register } from "./store/utils/thunkCreators";
+import { Grid, Hidden } from "@material-ui/core";
 
-const Login = (props) => {
-  const history = useHistory();
+import { register } from "./store/utils/thunkCreators";
+import { SideBanner } from "./components/SideBanner";
+import { AuthForm, HeaderContent } from "./components/AuthPage";
+import { useAuthStyles } from './components/AuthPage/authStyles';
+
+const Signup = (props) => {
   const { user, register } = props;
+
+  const history = useHistory();
+  const authClasses = useAuthStyles();
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -37,72 +35,53 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
+    <Grid className={authClasses.root} container spacing={0} justifyContent="center" alignItems="center">
+      <Hidden mdDown>
+        <Grid container md={12} lg={5} justifyContent="center" className={authClasses.section}>
+          <SideBanner />
         </Grid>
-        <form onSubmit={handleRegister}>
-          <Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
-          </Grid>
-        </form>
-      </Box>
+      </Hidden>
+      <Grid container md={12} lg={7} className={authClasses.mainContent}>
+        <HeaderContent
+          ctaText="Already have an account?"
+          buttonText="Login"
+          onButtonClick={() => history.push("/login")}
+          className={authClasses.headerContent}
+        />
+        <AuthForm
+          headerText="Create an account."
+          onSubmit={handleRegister}
+          submitText="Create"
+        >
+          <AuthForm.FormItem
+            aria-label="Username"
+            label="Username"
+            name="username"
+            type="text"
+            className={authClasses.fullWidth}
+          />
+          <AuthForm.FormItem
+            aria-label="E-mail address"
+            label="E-mail address"
+            name="username"
+            type="text"
+            className={authClasses.fullWidth}
+          />
+          <AuthForm.FormItem
+            label="Password"
+            aria-label="password"
+            type="password"
+            name="password"
+            className={`${authClasses.fullWidth} ${authClasses.password}`}
+            InputProps={{
+              classes: {
+                input: authClasses.resize,
+              }
+            }}
+          >
+          </AuthForm.FormItem>
+        </AuthForm>
+      </Grid>
     </Grid>
   );
 };
@@ -121,4 +100,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

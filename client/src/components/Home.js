@@ -12,6 +12,10 @@ const styles = {
   root: {
     height: "97vh",
   },
+  logout: {
+    height: "40px",
+    width: "120px"
+  }
 };
 
 class Home extends Component {
